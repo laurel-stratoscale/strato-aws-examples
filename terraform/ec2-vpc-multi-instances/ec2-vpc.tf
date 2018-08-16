@@ -46,7 +46,7 @@ resource "aws_default_route_table" "default" {
 
 # Creating an instance
 resource "aws_instance" "myapp_instance" {
-    ami = "${var.ami_my_image}"
+    ami = "${var.ami_image}"
     instance_type = "${var.instance_type}"
     subnet_id = "${aws_subnet.myapp_subnet.id}"
     vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
@@ -54,9 +54,6 @@ resource "aws_instance" "myapp_instance" {
     tags{
         Name="my_instance_${count.index}"
     }
-
-    # The following line is not required Symphony >= v4.2.7
-    associate_public_ip_address = true
 }
 
 resource "aws_eip" "myapp_instance_eip" {
