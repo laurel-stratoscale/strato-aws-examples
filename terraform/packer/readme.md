@@ -8,7 +8,7 @@ At a high level, this example performs the following steps:
 
 * Terraform creates a Bastion jump server and supporting network environment.
 
-* Packer SSHs into the Bastion server, creates and boots a temporary Packer instance, then jumps to the temporary instance.
+* Packer creates and boots a temporary Packer instance, then SSHs into the temporary instance through the Bastion server.
 
 * Once inside the temporary instance, Packer runs the provisioner commands to install Docker, clones the Docker-provisioned instance into an output AMI, and uploads the output AMI into Symphony.
 
@@ -84,7 +84,7 @@ The ID of the image you want Packer to use to create the Packer temporary instan
 
 **packer_user_name**
 
-The usernmae that Packer will use to SSH from Bastion into the Packer temporary instance.
+The username that Packer will use to SSH from Bastion into the Packer temporary instance.
 
 _KEYPAIR VARIABLES_
 
@@ -112,7 +112,7 @@ Full path to the private key file that Packer will use to SSH into the temporary
 
     Notes:
     
-    * This example automatically creates the `packer_generated.json` file, based on the information contained in `packer_gen.template`.
+    * This example automatically creates the `packer_generated.json` file, based on the template contained in `packer_gen.template`.
     
     * For the `packer build` command to succeed, your Symphony region must have a valid certificate.
     
